@@ -1,0 +1,101 @@
+﻿@model IEnumerable<HRnew.Models.EmployeeSalary>
+
+@{
+    ViewData["Title"] = "EmployeeSalaryList";
+    Layout = "~/Views/Shared/_Layout_HR.cshtml";
+}
+
+<h1>Employee SalaryList</h1>
+
+<p>
+    <a asp-action="EmployeeSalary">Create New</a>
+</p>
+
+
+
+@if ((ViewBag.EmployeeSalList != null))
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th></th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DeptId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.EmpId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.MonthlyWorkingDays)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SalaryAmount)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SalaryStatus)
+                </th>
+               @* <th>
+                    @Html.DisplayNameFor(model => model.RegDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.RegBy)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ModifiedDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ModifiledBy)
+                </th>*@
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                int index = 0;
+            }
+            @foreach (var item in ViewBag.EmployeeSalList)
+            {
+                index++;
+                <tr>
+                    <td>@index</td>
+                    <td>
+                        @item.DeptId
+                    </td>
+                    <td>
+                        @item.EmpId
+                    </td>
+                    <td>
+                        @item.MonthlyWorkingDays
+                    </td>
+                    <td>
+                        @item.SalaryAmount
+                    </td>
+                    <td>
+                        @item.SalaryStatus
+                    </td>
+                   @* <td>
+                        @item.RegDate
+                    </td>
+                    <td>
+                        @item.RegBy
+                    </td>
+                    <td>
+                        @item.ModifiedDate
+                    </td>
+                    <td>
+                        @item.ModifiledBy
+                    </td>*@
+                    <td>
+                        <a asp-action="EmployeeSalaryEdit" asp-route-id="@item.EmpId">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.EmpId">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.EmpId">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <div>No Employee found</div>
+}

@@ -1,0 +1,94 @@
+﻿@model HRnew.Models.EmployeeSalary
+
+@{
+    ViewData["Title"] = "EmployeeSalary";
+    Layout = "~/Views/Shared/_Layout_HR.cshtml";
+}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<span id="span1"></span>
+<script>
+    $(document).ready(function() {
+        $("#dlDepartmentID").change(function() {
+            $.ajax({
+                type: "GET",
+                url: "/HR_Employee/GetEmpByDepId?id=" + $("#dlDepartmentID").val(),
+                dataType: "json",
+                success: function(data) {
+                    debugger;
+                    if (data.length > 0) {
+                        $('#dlEmployee').html('');
+                        var options = '';
+                        options += '<option value="Select">-----Select Employee-----</option>';
+                        for (var i = 0; i < data.length; i++) {
+                            options += '<option value="' + data[i].value + '">' + data[i].text + '</option>';
+                        }
+                        $('#dlEmployee').append(options);
+                    }
+                }
+            });
+        })
+    })
+</script>
+
+<html>
+<head>
+    <h4>Employee Salary</h4>
+    <hr />
+</head>
+<body>
+    <form asp-action="EmployeeSalary">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <table>
+
+            <tr>
+                <td><label asp-for="DeptId" class="control-label">Select Department</label></td>
+                <td>
+                    <select asp-for="DeptId" id="dlDepartmentID">
+                        @foreach (var item in (IEnumerable<SelectListItem>)ViewBag.DepartmentList)
+                        {
+                            <option value="@item.Value">@item.Text</option>
+                        }
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <td><label asp-for="EmpId" class="control-label">Select Employee</label></td>
+                <td><select id="dlEmployee" asp-for="EmpId"> </select></td>
+                <td><span asp-validation-for="EmpId" class="text-danger"></span></td>
+            </tr>
+            <tr>
+                <td><label asp-for="MonthlyWorkingDays" class="control-label">No. of MonthlyWorkingDays</label></td>
+                <td><input asp-for="MonthlyWorkingDays" class="form-control" /></td>
+                <td><span asp-validation-for="MonthlyWorkingDays" class="text-danger"></span></td>
+            </tr>
+            <tr>
+                <td><label asp-for="SalaryAmount" class="control-label">Salary</label></td>
+                <td><input asp-for="SalaryAmount" class="form-control" /></td>
+                <td><span asp-validation-for="SalaryAmount" class="text-danger"></span></td>
+            </tr>
+            <tr>
+                <td><label asp-for="SalaryStatus" class="control-label">Salary Status</label></td>
+                <td>@Html.DropDownList("SalaryStatus", new SelectList(ViewBag.SalaryStatusList, "SalaryStatusId", "SalaryStatusText"), new { id="SalaryStatus", @class = "form-control" })</td>
+                <td><span asp-validation-for="SalaryStatus" class="text-danger"></span></td>
+            </tr>
+            <tr>
+                <td>
+                </td>
+                <td>
+                    <input type="submit" value="Submit" class="btn btn-primary" />&nbsp;
+                    <input type="reset" value="Clear" class="btn btn-primary" />
+                </td>
+                <td>
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>
+<div>
+    <a asp-action="EmployeeSalaryList">Back to List</a>
+</div>
+

@@ -1,0 +1,45 @@
+﻿@model HRnew.Models.HrDesignation
+
+@{
+    ViewData["Title"] = "Designation";
+    Layout = "~/Views/Shared/_Layout_HR.cshtml";
+}
+
+
+<h4>Designation</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Designation">
+            @* @using (@Html.BeginForm("Designation", "HR", FormMethod.Post))
+            {*@
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <table>
+                <tr>
+                    <td><label asp-for="Designation" class="control-label"></label></td>
+                    <td><input asp-for="Designation" class="form-control" /></td>
+                    <td><span asp-validation-for="Designation" class="text-danger"></span></td>
+                </tr>
+                <tr>
+                    <td><label asp-for="DutiesAssigned" class="control-label"></label></td>
+                    <td><input asp-for="DutiesAssigned" class="form-control" /></td>
+                    <td><span asp-validation-for="DutiesAssigned" class="text-danger"></span></td>
+                </tr>
+                <tr>
+                    <td>
+                    </td>
+                    <td>
+                        <input type="submit" value="Create" class="btn btn-primary" />&nbsp;
+                        <input type="submit" value="Clear" class="btn btn-primary" />
+                    </td>
+                </tr>
+            </table>
+            @*}*@
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

@@ -1,0 +1,30 @@
+﻿@model HRnew.Models.HrDashboard
+
+@{
+    ViewData["Title"] = "Dashboard";
+    Layout = "~/Views/Shared/_Layout_HR.cshtml";
+}
+
+<h1>HR Dashboard</h1>
+
+@using (@Html.BeginForm("Dashboard","HR", FormMethod.Post))
+{
+    <form asp-action="Dashboard">
+        <table align="center">
+            <tr>
+                <td>
+                    <input type="submit" value="Dashboard" name="DashboardName" class="btn btn-primary" />&nbsp;
+                    <input type="submit" value="HRlogin" name="DashboardName" class="btn btn-primary" />&nbsp;
+                </td>
+                <td>
+                     <input type="submit" value="HR_Employee:Dashboard" name="DashboardName" class="btn btn-primary" />&nbsp;
+                    <input type="submit" value="Designation" name="DashboardName" class="btn btn-primary" />
+                </td>
+                <td>
+                    <input type="submit" value="Create" class="btn btn-primary" />&nbsp;
+                    <input type="submit" value="Clear" class="btn btn-primary" />
+                </td>
+            </tr>
+        </table>
+    </form>
+}

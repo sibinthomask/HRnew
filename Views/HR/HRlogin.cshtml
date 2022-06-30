@@ -1,0 +1,44 @@
+﻿@model HRnew.Models.EmployeeRegistration
+
+@{
+    ViewData["Title"] = "HRlogin";
+    Layout = "~/Views/Shared/_Layout_HR.cshtml";
+}
+
+<h4>HR login</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="HRlogin">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <table>
+                <tr>
+                    <td>Username</td>
+                    <td><input asp-for="EmpUsername" class="form-control" /></td>
+                    <td><span asp-validation-for="EmpUsername" class="text-danger"></span></td>
+                </tr>
+                <tr>
+                    <td>Password</td>
+                    <td><input asp-for="EmpPassword" class="form-control" /></td>
+                    <td><span asp-validation-for="EmpPassword" class="text-danger"></span></td>
+                </tr>
+                <tr>
+                    <td>
+                    </td>
+                    <td>
+                        <input type="submit" value="Login" class="btn btn-primary" />&nbsp;
+                        <input type="reset" value="Clear" class="btn btn-primary" />
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }

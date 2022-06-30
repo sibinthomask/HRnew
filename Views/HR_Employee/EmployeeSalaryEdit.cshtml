@@ -1,0 +1,69 @@
+﻿@model HRnew.Models.EmployeeSalary
+
+@{
+    ViewData["Title"] = "EmployeeSalaryEdit";
+    Layout = "~/Views/Shared/_Layout_HR.cshtml";
+}
+<html>
+<body>
+    <h4>Employee Salary Edit</h4>
+    <hr />
+
+    <form method="post" enctype="multipart/form-data" asp-controller="HR_Employee" asp-action="EmployeeSalaryEdit">
+        @foreach (var item in ViewBag.EmployeeSalaryByID)
+        {
+            @if (item != null)
+            {
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="EmpSalId" />
+                <table>
+                    <tr>
+                        <td><label asp-for="DeptId" class="control-label"></label>Select Department</td>
+                        <td><input asp-for="DeptId" value=@item.DeptId class="form-control" /></td>
+                        <td><span asp-validation-for="DeptId" class="text-danger"></span></td>
+                    </tr>
+                    <tr>
+                        <td><label asp-for="EmpId" id="EmpId" class="control-label"></label>Select Employee</td>
+                        <td><input asp-for="EmpId" value=@item.EmpId class="form-control" /></td>
+                        <td><span asp-validation-for="EmpId" class="text-danger"></span></td>
+                    </tr>
+                    <tr>
+                        <td><label asp-for="MonthlyWorkingDays" class="control-label">Monthly Working Days</label></td>
+                        <td><input asp-for="MonthlyWorkingDays" value=@item.MonthlyWorkingDays class="form-control" /></td>
+                        <td><span asp-validation-for="MonthlyWorkingDays" class="text-danger"></span></td>
+                    </tr>
+                    <tr>
+                        <td><label asp-for="SalaryAmount" class="control-label">Salary Amount</label></td>
+                        <td><input asp-for="SalaryAmount" value=@item.SalaryAmount class="form-control" /></td>
+                        <td><span asp-validation-for="SalaryAmount" class="text-danger"></span></td>
+                    <tr>
+                        <td><label asp-for="SalaryStatus" class="control-label">Salary Status</label></td>
+                        <td>
+                                @Html.DropDownList("SalaryStatus", new SelectList(ViewBag.SalaryStatusList, "SalaryStatusId", "SalaryStatusText"), new { id="SalaryStatus", @class = "form-control" })
+                                @*@Html.DropDownList("SalaryStatus", new SelectList(ViewBag.SalaryStatusList, "SalaryStatusId", "SalaryStatusText"))*@
+                                @*@Html.DropDownListFor(o => o.SalaryStatus,new SelectList(ViewBag.SalaryStatusList, "SalaryStatusId", "SalaryStatusText"))*@
+                                @*@Html.DropDownListFor(m => m, new SelectList(Model.SalaryStatus, "SalaryStatusId", "SalaryStatusText"),  "Please select a country")*@
+                                @*@Html.DropDownList("SalaryStatusId", (SelectList)ViewBag.SalaryStatusList)*@
+                                @*@Html.DropDownListFor(model => model.SalaryStatus, ViewBag.SalaryStatusList as List<SelectListItem>, new {name = "SalaryStatusText", id = "SalaryStatusId" })*@
+                                    @*@Html.DropDownList("SalaryStatus", (SelectList)ViewBag.SalaryStatusList)*@
+                        </td>
+                        <td><span asp-validation-for="SalaryStatus" class="text-danger"></span></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <input type="submit" value="Save" class="btn btn-primary" />
+                            &nbsp;
+                            <input type="reset" value="Reset" class="btn btn-primary" />
+                        </td>
+                    </tr>
+                </table>
+            }
+        }
+    </form>
+
+    <div>
+        <a asp-action="EmployeeSalaryList">Back to List</a>
+    </div>
+</body>
+</html>

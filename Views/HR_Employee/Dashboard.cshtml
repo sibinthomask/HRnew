@@ -1,0 +1,29 @@
+﻿
+@{
+    ViewData["Title"] = "Dashboard";
+    Layout = "~/Views/Shared/_Layout_HR.cshtml";
+}
+
+<h1>HR_Employee Dashboard</h1>
+
+
+@using (@Html.BeginForm("Dashboard","HR_Employee", FormMethod.Post))
+{
+    <form asp-action="Dashboard">
+        <table align="center">
+            <tr>
+                @*<td>
+                    <input type="submit" value="Dashboard" name="DashboardName" class="btn btn-primary" />&nbsp;
+                    <input type="submit" value="EmployeeRegistration" name="DashboardName" class="btn btn-primary" />&nbsp;
+                </td>*@
+                <td>
+                     <input type="submit" value="HR_Employee:Dashboard" name="DashboardName" class="btn btn-primary" />&nbsp;
+                </td>
+                <td>
+                    <input type="submit" value="EmployeeSalary"  name="DashboardName" class="btn btn-primary" />&nbsp;
+                    @*<input type="submit" value="Clear" class="btn btn-primary" />*@
+                </td>
+            </tr>
+        </table>
+    </form>
+}
